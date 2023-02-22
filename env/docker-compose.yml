@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  ruby:
+    build:
+      context: ruby
+      args:
+        RUBY_IMAGE: ruby:3.1.3-bullseye
+        RAILS_VERSION: 7.0.4
+        BUNDLER_VERSION: 2.3.14
+        USER_ID: ${USER_ID:-1000}
+        USER_GROUP: ${USER_GROUP:-1000}
+    environment:
+      RAILS_ENV: ${RAILS_ENV:-development}
+      CONTAINER_PORT: ${CONTAINER_PORT:-3000}
+    ports:
+      - ${HOST_PORT:-3000}:${CONTAINER_PORT:-3000}
+    volumes:
+      - ..:/repo
+    working_dir: /repo/app/${APP_NAME:-hello_app}
+    command: ${APP_NAME:-hello_app}
