@@ -27,3 +27,6 @@ RUN groupadd -g "${USER_GROUP}" group1 && \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+
+# Default user
+USER user1
